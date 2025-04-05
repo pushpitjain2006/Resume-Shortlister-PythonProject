@@ -9,7 +9,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def score_resume_with_jd(resume_text, job_description):
     prompt = f"""
-You are an expert technical recruiter. Based on the job description (if provided) and resume below, respond in the following JSON format:
+You are an expert technical recruiter. Based on the job description and resume below, respond ONLY in the following JSON format (no explanation, no extra text):
 
 {{
   "score": <integer from 0 to 100>,
