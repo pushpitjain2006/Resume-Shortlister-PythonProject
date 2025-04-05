@@ -9,7 +9,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def score_resume_with_jd(resume_text, job_description):
     prompt = f"""
-You are an expert technical recruiter. Based on the job description and resume below, respond ONLY in the following JSON format (no explanation, no extra text):
+You are an expert technical recruiter. Based on the job description (if provided) and resume below, respond in the following JSON format:
 
 {{
   "score": <integer from 0 to 100>,
@@ -40,7 +40,5 @@ Resume:
                 return json.loads(match.group())
             except json.JSONDecodeError:
                 pass
-
-    # Final fallback if all fails
-    print("⚠️ Could not parse this response from OpenAI:", content)
+    print("Could not parse this response from OpenAI:", content)
     return {"score": 0, "strengths": [], "weaknesses": ["Could not parse feedback."]}

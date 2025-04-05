@@ -14,7 +14,7 @@ st.markdown("Upload multiple resumes and a job description to get ranked matches
 uploaded_files = st.file_uploader(
     "📂 Upload multiple resumes (PDFs)", type=["pdf"], accept_multiple_files=True
 )
-job_description = st.text_area("🧾 Paste Job Description Here", height=200)
+job_description = st.text_area("Paste Job Description Here", height=200)
 
 
 def extract_text(file):
@@ -26,8 +26,8 @@ def extract_text(file):
 
 
 if st.button("Shortlist Resumes"):
-    if not uploaded_files or not job_description:
-        st.error("Please upload resumes and paste the job description.")
+    if not uploaded_files:
+        st.error("Please upload resumes.")
     else:
         with st.spinner("Processing resumes..."):
             results = []
@@ -42,7 +42,7 @@ if st.button("Shortlist Resumes"):
             st.success("Here are the ranked resumes:")
 
             for idx, (filename, data) in enumerate(results, 1):
-                with st.expander(f"📄 {idx}. {filename} — Score: {data['score']}"):
+                with st.expander(f"{idx}. {filename} — Score: {data['score']}"):
                     st.markdown("### ✅ Strengths")
                     for strength in data.get("strengths", []):
                         st.markdown(f"- {strength}")
