@@ -6,13 +6,16 @@ import fitz
 st.set_page_config(page_title="Resume Shortlister", layout="centered")
 
 st.title("AI Resume Shortlister")
-st.markdown("Pushpit jain 23/SE/123"
-            "Priyanshu Tripathi 23/SE/122")
+st.markdown("Pushpit jain 23/SE/123")
+st.markdown("Priyanshu Tripathi 23/SE/122")
 st.markdown("Upload multiple resumes and a job description to get ranked matches.")
 
 
-uploaded_files = st.file_uploader("📂 Upload multiple resumes (PDFs)", type=["pdf"], accept_multiple_files=True)
+uploaded_files = st.file_uploader(
+    "📂 Upload multiple resumes (PDFs)", type=["pdf"], accept_multiple_files=True
+)
 job_description = st.text_area("🧾 Paste Job Description Here", height=200)
+
 
 def extract_text(file):
     text = ""
